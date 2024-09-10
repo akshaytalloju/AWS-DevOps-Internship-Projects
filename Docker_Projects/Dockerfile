@@ -1,14 +1,6 @@
-# Use OpenJDK as base image
-FROM openjdk:11-jre-slim
-
-# Set working directory
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y openjdk-11-jdk
+COPY your-app.jar /app.jar
 WORKDIR /app
-
-# Copy the JAR file to the container
-COPY myapp.jar /app/myapp.jar
-
-# Expose the port the application will run on
-EXPOSE 8080
-
-# Run the JAR file
-CMD ["java", "-jar", "/app/myapp.jar"]
+EXPOSE 80
+CMD ["java", "-jar", "/app.jar"]
